@@ -1,3 +1,21 @@
+if has('win32')
+    set encoding=utf-8
+    set fileencoding=utf-8
+    set langmenu=en_US
+    let $LANG='en_US'
+endif
+"
+if has('gui_running')
+    call plug#begin('~/.vim/plugged')
+    Plug 'morhetz/gruvbox'
+    call plug#end()
+    autocmd vimenter * colorscheme gruvbox
+    set background=dark
+    set guifont=Fira\ Code\ 13,Consolas:h14
+    set guioptions-=m
+    set guioptions-=T
+endif
+"
 set nocompatible
 syntax on
 filetype plugin indent on
@@ -42,3 +60,14 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 "
 nnoremap <C-n> :set relativenumber!<CR>
+"
+function GetExecutablePath()
+    if has('win32')
+        return shellescape('%:r')
+    endif
+    return './'.shellescape('%:r')
+endfunction
+autocmd filetype c   nnoremap <F9>  :w <bar> exec '!gcc -O2 -Wall '.shellescape('%').' -o '.shellescape('%:r').' && '.GetExecutablePath()<CR>
+autocmd filetype c   nnoremap <F10> :w <bar> exec '!gcc -O2 -Wall '.shellescape('%').' -o '.shellescape('%:r')<CR>
+autocmd filetype cpp nnoremap <F9>  :w <bar> exec '!g++ -std=c++14 -O2 -Wall '.shellescape('%').' -o '.shellescape('%:r').' && '.GetExecutablePath()<CR>
+autocmd filetype cpp nnoremap <F10> :w <bar> exec '!g++ -std=c++14 -O2 -Wall '.shellescape('%').' -o '.shellescape('%:r')<CR>
