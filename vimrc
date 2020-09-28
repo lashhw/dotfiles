@@ -1,3 +1,11 @@
+set nocompatible
+"
+call plug#begin()
+Plug 'morhetz/gruvbox'
+Plug 'itchyny/lightline.vim'
+call plug#end()
+let g:lightline = {'colorscheme': 'wombat'}
+"
 if has('win32')
     set encoding=utf-8
     set fileencoding=utf-8
@@ -6,9 +14,6 @@ if has('win32')
 endif
 "
 if has('gui_running')
-    call plug#begin('~/.vim/plugged')
-    Plug 'morhetz/gruvbox'
-    call plug#end()
     autocmd vimenter * colorscheme gruvbox
     set background=dark
     set guifont=Fira\ Code\ 13,Consolas:h14
@@ -16,7 +21,6 @@ if has('gui_running')
     set guioptions-=T
 endif
 "
-set nocompatible
 syntax on
 filetype plugin indent on
 set autoindent
