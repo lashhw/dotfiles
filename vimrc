@@ -1,10 +1,17 @@
 set nocompatible
 "
 call plug#begin()
+Plug 'jiangmiao/auto-pairs'
 Plug 'morhetz/gruvbox'
-Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
 call plug#end()
-let g:lightline = {'colorscheme': 'wombat'}
+set noshowmode " When airline is loaded, showmode is useless
+"
+if has('gui_running') || (exists("+termguicolors") && &t_Co >= 256)
+    colorscheme gruvbox
+    set background=dark
+    set termguicolors
+endif
 "
 if has('win32')
     set encoding=utf-8
@@ -14,8 +21,6 @@ if has('win32')
 endif
 "
 if has('gui_running')
-    autocmd vimenter * colorscheme gruvbox
-    set background=dark
     set guifont=Fira\ Code\ 13,Consolas:h14
     set guioptions-=m
     set guioptions-=T
