@@ -50,7 +50,6 @@ set hlsearch
 set list
 set listchars=tab:»\ ,extends:›,precedes:‹,trail:·
 "
-set backspace=indent,eol,start
 set laststatus=2
 set autochdir
 set showcmd
