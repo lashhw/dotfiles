@@ -4,8 +4,10 @@ call plug#begin()
 Plug 'jiangmiao/auto-pairs'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
+Plug 'ycm-core/YouCompleteMe'
 call plug#end()
 set noshowmode " When airline is loaded, showmode is useless
+let g:ycm_extra_conf_globlist = ['~/dotfiles/ycm_extra_conf/*']
 "
 if has('gui_running') || (exists("+termguicolors") && &t_Co >= 256)
     colorscheme gruvbox
@@ -75,7 +77,7 @@ function GetExecutablePath()
     endif
     return './'.shellescape('%:r')
 endfunction
-autocmd filetype c   nnoremap <F9>  :w <bar> exec '!gcc -O2 -Wall '.shellescape('%').' -o '.shellescape('%:r').' && '.GetExecutablePath()<CR>
-autocmd filetype c   nnoremap <F10> :w <bar> exec '!gcc -O2 -Wall '.shellescape('%').' -o '.shellescape('%:r')<CR>
+autocmd filetype c   nnoremap <F9>  :w <bar> exec '!gcc -std=c11   -O2 -Wall '.shellescape('%').' -o '.shellescape('%:r').' && '.GetExecutablePath()<CR>
+autocmd filetype c   nnoremap <F10> :w <bar> exec '!gcc -std=c11   -O2 -Wall '.shellescape('%').' -o '.shellescape('%:r')<CR>
 autocmd filetype cpp nnoremap <F9>  :w <bar> exec '!g++ -std=c++14 -O2 -Wall '.shellescape('%').' -o '.shellescape('%:r').' && '.GetExecutablePath()<CR>
 autocmd filetype cpp nnoremap <F10> :w <bar> exec '!g++ -std=c++14 -O2 -Wall '.shellescape('%').' -o '.shellescape('%:r')<CR>
