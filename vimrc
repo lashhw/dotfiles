@@ -26,6 +26,9 @@ if has('gui_running')
     set guifont=Fira\ Code\ 13,Consolas:h14
     set guioptions-=m
     set guioptions-=T
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif
 "
 syntax on
@@ -35,6 +38,7 @@ set nowrap
 set mouse=a
 set backspace=eol,start,indent
 set noerrorbells visualbell t_vb=
+set ttimeoutlen=50
 "
 set wildmode=longest:full,full
 set wildmenu
