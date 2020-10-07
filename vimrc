@@ -4,10 +4,16 @@ call plug#begin()
 Plug 'jiangmiao/auto-pairs'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
-Plug 'ycm-core/YouCompleteMe'
+if has('linux')
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+elseif has('python3')
+    Plug 'zxqfl/tabnine-vim'
+endif
 call plug#end()
 set noshowmode " When airline is loaded, showmode is useless
-let g:ycm_extra_conf_globlist = ['~/dotfiles/ycm_extra_conf/*']
+if has('linux')
+    source ~/.coc_vimrc
+endif
 "
 if has('gui_running') || (exists("+termguicolors") && &t_Co >= 256)
     colorscheme gruvbox
@@ -40,7 +46,7 @@ set backspace=eol,start,indent
 set noerrorbells visualbell t_vb=
 set ttimeoutlen=50
 "
-set wildmode=longest:full,full
+set wildmode=full
 set wildmenu
 "
 set number
