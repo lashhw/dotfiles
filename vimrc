@@ -12,7 +12,7 @@ endif
 call plug#end()
 set noshowmode " When airline is loaded, showmode is useless
 if has('linux')
-    source ~/.coc_vimrc
+    source ~/.coc.vim
 endif
 "
 if has('gui_running') || (exists("+termguicolors") && &t_Co >= 256)
