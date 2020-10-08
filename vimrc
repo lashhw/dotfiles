@@ -4,15 +4,13 @@ call plug#begin()
 Plug 'jiangmiao/auto-pairs'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
-if has('linux')
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-elseif has('python3')
-    Plug 'zxqfl/tabnine-vim'
-endif
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 set noshowmode " When airline is loaded, showmode is useless
-if has('linux')
+if (has('linux') && isdirectory($HOME."/.vim/plugged/coc.nvim")) || 
+  \(has('win32') && isdirectory($HOME."/vimfiles/plugged/coc.nvim"))
     source ~/.coc.vim
+    let g:coc_global_extensions = ['coc-clangd']
 endif
 "
 if has('gui_running') || (exists("+termguicolors") && &t_Co >= 256)
