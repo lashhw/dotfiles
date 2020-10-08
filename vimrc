@@ -13,6 +13,7 @@ if (has('linux') && isdirectory($HOME."/.vim/plugged/coc.nvim")) ||
 endif
 if has('win32')
     let g:coc_node_path="~/vimfiles/binaries/node-v12.19.0-win-x64/node"
+    let g:coc_global_extensions=['coc-tabnine']
 endif
 "
 if has('gui_running') || (exists("+termguicolors") && &t_Co >= 256)
