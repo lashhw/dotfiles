@@ -10,7 +10,9 @@ set noshowmode " When airline is loaded, showmode is useless
 if (has('linux') && isdirectory($HOME."/.vim/plugged/coc.nvim")) || 
   \(has('win32') && isdirectory($HOME."/vimfiles/plugged/coc.nvim"))
     source ~/.coc.vim
-    let g:coc_global_extensions = ['coc-clangd']
+endif
+if has('win32')
+    let g:coc_node_path="%USERPROFILE%\vimfiles\binaries\node-v12.19.0-win-x64"
 endif
 "
 if has('gui_running') || (exists("+termguicolors") && &t_Co >= 256)
