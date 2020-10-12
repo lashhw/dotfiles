@@ -7,7 +7,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 set noshowmode " When airline is loaded, showmode is useless
-if (has('linux') && isdirectory($HOME."/.vim/plugged/coc.nvim")) || 
+let g:gruvbox_guisp_fallback = 'bg' " fix undercurl not showing in terminal
+if (has('linux') && isdirectory($HOME."/.vim/plugged/coc.nvim")) ||
   \(has('win32') && isdirectory($HOME."/vimfiles/plugged/coc.nvim"))
     source ~/.coc.vim
 endif
