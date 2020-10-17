@@ -4,6 +4,7 @@ call plug#begin()
 Plug 'jiangmiao/auto-pairs'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 set noshowmode " When airline is loaded, showmode is useless
@@ -17,7 +18,9 @@ if has('win32')
 endif
 "
 if has('gui_running') || (exists("+termguicolors") && &t_Co >= 256)
-    colorscheme gruvbox
+    autocmd vimenter *
+                \ colorscheme gruvbox |
+                \ AirlineTheme gruvbox
     set background=dark
     set termguicolors
 endif
