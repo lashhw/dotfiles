@@ -1,3 +1,4 @@
+let g:autocomplete_engine = 'coc.nvim'
 set nocompatible
 "
 call plug#begin()
@@ -5,16 +6,22 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+if g:autocomplete_engine == 'coc.nvim'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+elseif g:autocomplete_engine == 'tabnine'
+    Plug 'zxqfl/tabnine-vim'
+endif
 call plug#end()
 set noshowmode " When airline is loaded, showmode is useless
 let g:gruvbox_guisp_fallback = 'bg' " fix undercurl not showing in terminal
-if (has('linux') && isdirectory($HOME."/.vim/plugged/coc.nvim")) ||
-  \(has('win32') && isdirectory($HOME."/vimfiles/plugged/coc.nvim"))
-    source ~/.coc.vim
-endif
-if has('win32')
-    let g:coc_node_path="~/vimfiles/binaries/node-v12.19.0-win-x64/node"
+if g:autocomplete_engine == 'coc.nvim'
+    if (has('linux') && isdirectory($HOME."/.vim/plugged/coc.nvim")) ||
+      \(has('win32') && isdirectory($HOME."/vimfiles/plugged/coc.nvim"))
+        source ~/.coc.vim
+    endif
+    if has('win32')
+        let g:coc_node_path="~/vimfiles/binaries/node-v12.19.0-win-x64/node"
+    endif
 endif
 "
 if has('gui_running') || (exists("+termguicolors") && &t_Co >= 256)
@@ -91,7 +98,7 @@ function GetExecutablePath()
     endif
     return './'.shellescape('%:r')
 endfunction
-autocmd filetype c   nnoremap <F9>  :w <bar> exec '!gcc -std=c11   -O2 -Wall '.shellescape('%').' -o '.shellescape('%:r').' && '.GetExecutablePath()<CR>
-autocmd filetype c   nnoremap <F10> :w <bar> exec '!gcc -std=c11   -O2 -Wall '.shellescape('%').' -o '.shellescape('%:r')<CR>
+autocmd filetype c   nnoremap <F9>  :w <bar> exec '!gcc -std=c11   -O2 -Wall '.shellescape('%').' -o '.shellescape('%:r').' -lm && '.GetExecutablePath()<CR>
+autocmd filetype c   nnoremap <F10> :w <bar> exec '!gcc -std=c11   -O2 -Wall '.shellescape('%').' -o '.shellescape('%:r').' -lm'<CR>
 autocmd filetype cpp nnoremap <F9>  :w <bar> exec '!g++ -std=c++14 -O2 -Wall '.shellescape('%').' -o '.shellescape('%:r').' && '.GetExecutablePath()<CR>
 autocmd filetype cpp nnoremap <F10> :w <bar> exec '!g++ -std=c++14 -O2 -Wall '.shellescape('%').' -o '.shellescape('%:r')<CR>
