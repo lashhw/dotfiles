@@ -1,0 +1,8 @@
+source $VIMRUNTIME/vimrc_example.vim
+set nowrap
+set nu
+set et
+set ts=4
+set sw=4
+set gfn=Consolas:h14
+nnoremap <F9> :w <bar> !gcc -std=c99 -Wall % -o %:r -lm && %:r<CR>
