@@ -15,10 +15,9 @@ call plug#end()
 set noshowmode " When airline is loaded, showmode is useless
 let g:gruvbox_guisp_fallback = 'bg' " fix undercurl not showing in terminal
 let g:AutoPairsShortcutBackInsert = '<C-b>'
-if g:autocomplete_engine == 'coc.nvim'
-    if (has('linux') && isdirectory($HOME."/.vim/plugged/coc.nvim"))
+if g:autocomplete_engine == 'coc.nvim' && has('linux')
+   \ && isdirectory($HOME."/.vim/plugged/coc.nvim")
         source ~/.coc.vim
-    endif
 endif
 "
 if has('gui_running') || &t_Co >= 256
