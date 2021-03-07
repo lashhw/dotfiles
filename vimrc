@@ -94,10 +94,7 @@ nnoremap <C-l> <C-w>l
 nnoremap <C-n> :set relativenumber!<CR>
 "
 function GetExecutablePath()
-    if has('win32')
-        return shellescape('%:r')
-    endif
-    return './'.shellescape('%:r')
+    return has('win32') ? shellescape('%:r') : ('./'.shellescape('%:r'))
 endfunction
 autocmd filetype c   nnoremap <F9>  :w <bar> exec '!gcc -std=c11   -O2 -Wall '.shellescape('%').' -o '.shellescape('%:r').' -lm && '.GetExecutablePath()<CR>
 autocmd filetype c   nnoremap <F10> :w <bar> exec '!gcc -std=c11   -O2 -Wall '.shellescape('%').' -o '.shellescape('%:r').' -lm'<CR>
